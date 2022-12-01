@@ -11,6 +11,7 @@
     "lint": "eslint ./src/**/*.{js,jsx} App.js --no-error-on-unmatched-pattern"
   },
   "dependencies": {
+    "@expo/dev-server": "0.1.120",
     "@expo/webpack-config": "^0.17.0",
     "@types/cors": "^2.8.12",
     "expo": "~46.0.17",
@@ -19,7 +20,7 @@
     "react-dom": "18.0.0",
     "react-native": "0.69.6",
     "react-native-web": "~0.18.7",
-    "@expo/dev-server": "0.1.120"
+    "react-router-native": "^6.4.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

@@ -1,4 +1,5 @@
-import { View, StyleSheet, Pressable, Alert } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import { Link } from 'react-router-native';
 import theme from '../theme';
 import Text from './Text';
 
@@ -7,26 +8,31 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingTop: 40,
     backgroundColor: theme.colors.appBarBackground,
-    paddingBottom: 15,
+    paddingBottom: 15
   },
    tab: {
     color: '#FFFFFF',
-    paddingLeft: 10
+    paddingLeft: 10,
+    paddingRight: 10
    }
 });
 
-const AppBarTab = ({ text }) => {
+const AppBarTab = ({ text, link }) => {
+    console.log(text, link)
   return(
-  <Pressable onPress={() => Alert.alert('You pressed the text!')}>
-    <Text style={styles.tab} fontWeight='bold' fontSize='subheading' color='textSecondary'>{text}</Text>
-  </Pressable>    
+    <Link to={link}>
+      <Text style={styles.tab} fontWeight='bold' fontSize='subheading' color='textSecondary'>{text}</Text>
+    </Link>
   )
 }
 
 const AppBar = () => {
   return( 
-    <View style={styles.flexContainer}>{/* ... */}
-      <AppBarTab text={'Repositories'}/>
+    <View style={styles.flexContainer}>
+      <ScrollView horizontal>
+        <AppBarTab text={'Repositories'} link='/'/>
+        <AppBarTab text={'Sign in'} link='/signin'/>
+      </ScrollView>
     </View>
   )
 };
