@@ -1,4 +1,5 @@
 import { View, StyleSheet } from 'react-native';
+import theme from '../theme';
 import Text from './Text';
 
 const languageStyles = StyleSheet.create({
@@ -7,7 +8,7 @@ const languageStyles = StyleSheet.create({
         marginLeft: 70,
       },
       languageBox: {
-        backgroundColor: '#1976d2',
+        backgroundColor: theme.colors.primary,
         color: '#FFFFFF',
         borderRadius: 5,
         padding:5

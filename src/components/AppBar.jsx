@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
 });
 
 const AppBarTab = ({ text, link }) => {
-    console.log(text, link)
   return(
     <Link to={link}>
       <Text style={styles.tab} fontWeight='bold' fontSize='subheading' color='textSecondary'>{text}</Text>
