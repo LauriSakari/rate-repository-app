@@ -5,7 +5,8 @@ const theme = {
       primary: '#0366d6',
       appBarBackground: '#24292e',
       appBarText: '#FFFFFF',
-      signInBackground: '#D3D3D3'
+      signInBackground: '#D3D3D3',
+      errorColor: '#d73a4a'
     },
     fontSizes: {
       body: 14,

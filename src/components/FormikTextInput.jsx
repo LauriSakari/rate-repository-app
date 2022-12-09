@@ -8,14 +8,17 @@ import theme from '../theme';
 const styles = StyleSheet.create({
   input: {
     height: 40,
-    margin: 12,
+    marginLeft: 12,
+    marginTop: 12,
     borderWidth: 1,
     borderColor: theme.colors.signInBackground,
     padding: 10,
     borderRadius: 3
   },
   errorText: {
+    marginLeft: 12,
     marginTop: 5,
+    color: theme.colors.errorColor
   },
 });
 
