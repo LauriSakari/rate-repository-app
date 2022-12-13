@@ -16,10 +16,11 @@ const repositoryHeaderStyles = StyleSheet.create({
       paddingRight: 15,
     },
     infoContainer: {
-      flexGrow: 1,
+      flexShrink: 1
     },
     infoDescription: {
-    paddingTop: 7
+    paddingTop: 7,
+    
     }
   })
   

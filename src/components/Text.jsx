@@ -28,9 +28,7 @@ const styles = StyleSheet.create({
 });
 
 const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
-  console.log('fontfamily', props)
 
-  console.log('styles', styles.text)
   const textStyle = [
     styles.text,
     color === 'textSecondary' && styles.colorTextSecondary,

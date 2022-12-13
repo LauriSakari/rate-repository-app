@@ -18,7 +18,6 @@ const RepositoryItem = ( {item} ) => {
         name={item.fullName} 
         description={item.description} 
         avatar={item.ownerAvatarUrl}
-        language={item.language}
       />    
       <Language language={item.language} />
       <Numbers stars={item.stargazersCount} 
