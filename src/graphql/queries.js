@@ -27,4 +27,13 @@ mutation signIn($username: String!, $password: String!) {
     accessToken
   }
 }
-`
+`;
+
+export const GET_USERINFO = gql`
+query {
+  me {
+    id
+    username
+  }
+}
+`;
