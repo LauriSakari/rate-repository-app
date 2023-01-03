@@ -21,7 +21,7 @@ const roundNumbers = (number) => {
   
   const NumberRow = ({ number, unit, description }) => {
       return (
-      <View>
+      <View testID='numberRow'>
         <Text style={numbersStyles.numberItem} fontWeight={'bold'} fontSize={'subheading'}>{number}{unit}</Text>
         <Text style={numbersStyles.numberItem} color={'textSecondary'}>{description}</Text>
       </View>
@@ -29,7 +29,7 @@ const roundNumbers = (number) => {
   
   const Numbers = ({stars, forks, reviews, rating }) => {
     return(
-      <View style={numbersStyles.numbersContainer}>
+      <View testID='numbers' style={numbersStyles.numbersContainer}>
         <NumberRow number={roundNumbers(stars)} unit={'k'} description={'Stars'}/>
         <NumberRow number={roundNumbers(forks)} unit={'k'} description={'Forks'}/>
         <NumberRow number={reviews} description={'Reviews'}/>

@@ -12,9 +12,12 @@ const styles = StyleSheet.create({
 })
 
 const RepositoryItem = ( {item} ) => {
+
+console.log('repositoryItem', item)
+
   return (
-    <View style={styles.container}>
-      <RepositoryHeader
+    <View testID='repositoryItem' style={styles.container}>
+      <RepositoryHeader 
         name={item.fullName} 
         description={item.description} 
         avatar={item.ownerAvatarUrl}
