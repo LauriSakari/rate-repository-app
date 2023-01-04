@@ -51,12 +51,10 @@ describe('RepositoryList', () => {
   
         // Add your test code here
 
-        const { debug, getAllByTestId } = render(<RepositoryListContainer repositories={repositories} />)
+        const { getAllByTestId } = render(<RepositoryListContainer repositories={repositories} />)
         const repositoryItems = getAllByTestId('repositoryItem');
         
         const [firstRepositoryItem, secondRepositoryItem] = repositoryItems;
-        
-        debug();
 
         const [firstRepositoryItemNumbers] = within(firstRepositoryItem).getAllByTestId('numbers')
         const [secondRepositoryItemNumbers] = within(secondRepositoryItem).getAllByTestId('numbers')

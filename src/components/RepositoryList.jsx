@@ -12,7 +12,6 @@ const ItemSeparator = () => <View style={styles.separator} />;
 
 export const RepositoryListContainer = ({ repositories }) => {
 
-  console.log('rendered')
   const repositoryNodes = repositories
     ? repositories.edges.map((edge) => edge.node)
     : [];

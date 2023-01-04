@@ -13,8 +13,6 @@ const styles = StyleSheet.create({
 
 const RepositoryItem = ( {item} ) => {
 
-console.log('repositoryItem', item)
-
   return (
     <View testID='repositoryItem' style={styles.container}>
       <RepositoryHeader 
