@@ -68,8 +68,8 @@ describe('RepositoryList', () => {
         expect(firstRepositoryItem).toHaveTextContent('TypeScript');
         expect(firstStars).toHaveTextContent('21.9kStars')
         expect(firstForks).toHaveTextContent('1.6kForks')
-        expect(firstReviews).toHaveTextContent('88Reviews')
-        expect(firstRatings).toHaveTextContent('3Ratings')
+        expect(firstReviews).toHaveTextContent('3Reviews')
+        expect(firstRatings).toHaveTextContent('88Rating')
         //expect(firstStars).toHaveTextContext('21.9k')
 
         expect(secondRepositoryItem).toHaveTextContent('async-library/react-async');
@@ -77,8 +77,8 @@ describe('RepositoryList', () => {
         expect(secondRepositoryItem).toHaveTextContent('JavaScript');
         expect(secondForks).toHaveTextContent('0.1kForks')
         expect(secondStars).toHaveTextContent('1.8kStars');
-        expect(secondReviews).toHaveTextContent('72Reviews');
-        expect(secondRatings).toHaveTextContent('3Ratings');
+        expect(secondReviews).toHaveTextContent('3Reviews');
+        expect(secondRatings).toHaveTextContent('72Rating');
 
       });
     });

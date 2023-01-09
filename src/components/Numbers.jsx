@@ -33,7 +33,7 @@ const roundNumbers = (number) => {
         <NumberRow number={roundNumbers(stars)} unit={'k'} description={'Stars'}/>
         <NumberRow number={roundNumbers(forks)} unit={'k'} description={'Forks'}/>
         <NumberRow number={reviews} description={'Reviews'}/>
-        <NumberRow number={rating} description={'Ratings'}/>
+        <NumberRow number={rating} description={'Rating'}/>
       </View>
   )}
 
