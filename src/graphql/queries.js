@@ -55,4 +55,27 @@ query getRepositoryById ($idToSearch: ID!){
     url
   }
   }
-`
+`;
+
+export const GET_REPOSITORY_REVIEWS = gql`
+query getRepositoryReviewsById ($idToSearch: ID!){
+  repository(id: $idToSearch) {
+    id
+    fullName
+    reviews {
+      edges {
+        node {
+          id
+          text
+          rating
+          createdAt
+          user {
+            id
+            username
+          }
+        }
+      }
+    }
+  }
+  }
+`;

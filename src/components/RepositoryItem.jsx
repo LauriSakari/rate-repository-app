@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const RepositoryItem = ( {item, showGitHubButton} ) => {
+const RepositoryItem = ({ item, showGitHubButton }) => {
 
   const handleGitHubButton = async () => {
     try {
@@ -22,7 +22,6 @@ const RepositoryItem = ( {item, showGitHubButton} ) => {
     
   }
 
-  console.log(showGitHubButton)
   return (
     <View testID='repositoryItem' style={styles.container}>
       <RepositoryHeader
