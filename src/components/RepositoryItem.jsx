@@ -2,7 +2,9 @@ import { View, StyleSheet, Linking} from 'react-native';
 import Numbers from './Numbers';
 import Language from './Language'
 import RepositoryHeader from './RepositoryHeader';
-import GitHubButton from './GitHubButton';
+//import GitHubButton from './GitHubButton';
+import AddReviewButton from './LargeButton';
+
 
 const styles = StyleSheet.create({
   container: {
@@ -19,7 +21,6 @@ const RepositoryItem = ({ item, showGitHubButton }) => {
     } catch (error) {
       console.log('Something went wrong ', error)
     }
-    
   }
 
   return (
@@ -35,7 +36,7 @@ const RepositoryItem = ({ item, showGitHubButton }) => {
         reviews={item.reviewCount}
         rating={item.ratingAverage}/>
         
-        {showGitHubButton ? <GitHubButton handleGitHubButton={handleGitHubButton} text='Open in GitHub'/> : null}
+        {showGitHubButton ? <AddReviewButton handleButton={handleGitHubButton} text='Open in GitHub'/> : null}
     </View>
     
   )

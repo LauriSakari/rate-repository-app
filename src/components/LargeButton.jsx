@@ -2,7 +2,7 @@ import { View, Pressable } from 'react-native';
 import theme from '../theme';
 import Text from './Text';
 
-const AddReviewButton = ({ handleButton, text }) => {
+const LargeButton = ({ handleButton, text }) => {
     return(
         <Pressable onPress={() => handleButton()}>
         <View style={theme.buttonContainer}>
@@ -10,7 +10,6 @@ const AddReviewButton = ({ handleButton, text }) => {
         </View>
         </Pressable>
         ) 
-
 }
 
-export default AddReviewButton
+export default LargeButton

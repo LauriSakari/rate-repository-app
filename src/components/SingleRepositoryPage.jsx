@@ -28,7 +28,6 @@ const SingleRepositoryPage = () => {
     }
 
     const reviewsList = reviews.edges
-    console.log(reviewsList)
 
  return (
   <FlatList

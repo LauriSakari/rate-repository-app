@@ -1,7 +1,7 @@
 import { View, StyleSheet } from "react-native"
 import { Formik, } from 'formik';
 import FormikTextInput from "./FormikTextInput";
-import AddReviewButton from "./AddReviewButton";
+import LargeButton from "./LargeButton";
 import * as yup from 'yup';
 import { useMutation } from "@apollo/client";
 import { CREATE_REVIEW } from "../graphql/queries";
@@ -52,7 +52,7 @@ const CreateReviewForm = () => {
         <FormikTextInput name="repositoryName" placeholder="Reposity name"/>
         <FormikTextInput name="ratingField" placeholder="Rating between 0 and 100"/>
         <FormikTextInput name="text" placeholder="Review" height={'auto'} multiline={true}/>
-        <AddReviewButton handleButton={handleSubmit} text='Create a review'/>
+        <LargeButton handleButton={handleSubmit} text='Create a review'/>
       </View>
     }
     </Formik>
