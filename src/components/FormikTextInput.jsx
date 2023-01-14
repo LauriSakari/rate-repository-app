@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     height: 40,
     marginLeft: 12,
     marginTop: 12,
+    marginRight: 12,
     borderWidth: 1,
     borderColor: theme.colors.signInBackground,
     padding: 10,

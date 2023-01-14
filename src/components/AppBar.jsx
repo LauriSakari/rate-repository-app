@@ -43,8 +43,17 @@ const AppBar = () => {
     <View style={styles.flexContainer}>
       <ScrollView horizontal>
         <AppBarTab text={'Repositories'} link='/'/>
-        {data.me ? <AppBarTab text={'Sign out'} link='/' onPress={logOut}/> : 
-        <AppBarTab text={'Sign in'} link='/signin'/> }
+        {data.me ? (
+        <>
+        <AppBarTab text={'Create a review'} link='/createreview'/>
+        <AppBarTab text={'Sign out'} link='/' onPress={logOut}/>
+        </>) : 
+        (
+        <>
+          <AppBarTab text={'Sign in'} link='/signin'/>
+          <AppBarTab text={'Sign up'} link='/signup'/>
+        </>
+        )}
       </ScrollView>
     </View>
   )

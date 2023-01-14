@@ -35,7 +35,7 @@ const RepositoryItem = ({ item, showGitHubButton }) => {
         reviews={item.reviewCount}
         rating={item.ratingAverage}/>
         
-        {showGitHubButton ? <GitHubButton handleGitHubButton={handleGitHubButton}/> : null}
+        {showGitHubButton ? <GitHubButton handleGitHubButton={handleGitHubButton} text='Open in GitHub'/> : null}
     </View>
     
   )

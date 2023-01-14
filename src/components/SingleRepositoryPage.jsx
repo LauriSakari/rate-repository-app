@@ -28,19 +28,19 @@ const SingleRepositoryPage = () => {
     }
 
     const reviewsList = reviews.edges
+    console.log(reviewsList)
 
  return (
   <FlatList
     data={reviewsList}
     renderItem={({ item }) => <ReviewItem item={item}/>}
-    keyExtractor={({ id }) => id}
+    ItemSeparatorComponent={ItemSeparator}
     ListHeaderComponent={() => 
       <>
         <RepositoryItem item={repository} showGitHubButton={true}/>
         <ItemSeparator/>
       </>
       }
-    ItemSeparatorComponent={ItemSeparator}
     />
    )
 }

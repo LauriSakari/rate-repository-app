@@ -21,6 +21,19 @@ const theme = {
       normal: '400',
       bold: '700',
     },
+    buttonContainer: {
+      flexDirection: 'row',
+    },
+    button: {
+      flex: 1,
+      backgroundColor: '#0366d6',
+      fontWeight: '700',
+      color: '#FFFFFF',
+      borderRadius: 5,
+      padding:15,
+      margin: 15,
+      textAlign:'center'
+    },
   };
   
   export default theme;

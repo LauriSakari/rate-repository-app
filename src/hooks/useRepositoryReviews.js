@@ -5,6 +5,7 @@ const useRepositoryReviews = (id) => {
   const { loading, error, data } = useQuery(GET_REPOSITORY_REVIEWS, {
     variables: { idToSearch: id },
     fetchPolicy: 'cache-and-network',
+
   })
 
   if (loading) {

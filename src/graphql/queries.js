@@ -79,3 +79,16 @@ query getRepositoryReviewsById ($idToSearch: ID!){
   }
   }
 `;
+
+export const CREATE_REVIEW = gql`
+mutation Mutation($review: CreateReviewInput) {
+  createReview(review: $review) {
+    id
+    rating
+    text
+    repository {
+      ownerName
+    }
+  }
+}
+`
