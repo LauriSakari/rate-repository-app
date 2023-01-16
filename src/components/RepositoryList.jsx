@@ -4,7 +4,9 @@ import ItemSeparator from './ItemSeparator';
 import useRepositories from '../hooks/useRepositories';
 import { useNavigate } from 'react-router-native';
 import {Picker} from '@react-native-picker/picker';
+import { Searchbar } from 'react-native-paper';
 import { useState } from 'react';
+import { useDebounce } from 'use-debounce';
 
 
 
@@ -29,8 +31,13 @@ export const RepositoryListContainer = ({ repositories, handlePress }) => {
 
 const RepositoryList = () => {
   const [selectedSorting, setSelectedSorting] = useState("CREATED_AT");
-  const { repositories } = useRepositories(selectedSorting);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [value] = useDebounce(searchQuery, 500);
+  const { repositories } = useRepositories(selectedSorting, value);
   
+  const onChangeSearch = query => setSearchQuery(query);
+
+  console.log(searchQuery)
   const navigate = useNavigate()
 
   const handlePress = (item) => {
@@ -39,6 +46,11 @@ const RepositoryList = () => {
   
   return (
   <>
+    <Searchbar
+      placeholder="Search"
+      onChangeText={onChangeSearch}
+      value={searchQuery}
+    />
     <Picker
       selectedValue={selectedSorting}
       onValueChange={(itemValue) => setSelectedSorting(itemValue)
