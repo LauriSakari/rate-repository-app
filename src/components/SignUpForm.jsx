@@ -52,8 +52,8 @@ const SignUpForm = () => {
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
       {({ handleSubmit }) => <View style={styles.inputFieldsContainer}>
         <FormikTextInput name="username" placeholder="username"/>
-        <FormikTextInput name="password" placeholder="Password"/>
-        <FormikTextInput name="confirmPassword" placeholder="Confirm password"/>
+        <FormikTextInput name="password" placeholder="Password" secureTextEntry={true}/>
+        <FormikTextInput name="confirmPassword" placeholder="Confirm password" secureTextEntry={true}/>
         <LargeButton handleButton={handleSubmit} text='Sign up'/>
       </View>
       }

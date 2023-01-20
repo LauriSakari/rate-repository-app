@@ -5,32 +5,36 @@ import LargeButton from "./LargeButton";
 import * as yup from 'yup';
 import { useMutation } from "@apollo/client";
 import { CREATE_REVIEW } from "../graphql/queries";
+import { useNavigate } from "react-router-native";
+
+const initialValues = {
+  ownerName: '',
+  repositoryName: '',
+  ratingField: 0,
+  text: ''
+}
+
+const styles = StyleSheet.create({
+  inputFieldsContainer: {
+    backgroundColor: 'white',
+    paddingBottom: 15
+  }
+})
+
+const validationSchema = yup.object().shape({
+  ownerName: yup.string()
+    .required('Reposity owner name is required'),
+  repositoryName: yup.string()
+    .required('Repository name is required'),
+  ratingField: yup.number().integer().min(0).max(100)
+    .required('Rating is required')
+})
 
 const CreateReviewForm = () => {
-    const initialValues = {
-        ownerName: '',
-        repositoryName: '',
-        ratingField: 0,
-        text: ''
-    }
 
-    const styles = StyleSheet.create({
-        inputFieldsContainer: {
-          backgroundColor: 'white',
-          paddingBottom: 15
-        }
-    })
-
-    const validationSchema = yup.object().shape({
-        ownerName: yup.string()
-          .required('Reposity owner name is required'),
-        repositoryName: yup.string()
-          .required('Repository name is required'),
-        ratingField: yup.number().integer().min(0).max(100)
-          .required('Rating is required')
-      })
-
-      const [createReview] = useMutation(CREATE_REVIEW)
+    const [createReview] = useMutation(CREATE_REVIEW)
+    
+    const navigate = useNavigate()
     
     const onSubmit = async ({ ownerName, repositoryName, ratingField, text }) => {
 
@@ -42,7 +46,8 @@ const CreateReviewForm = () => {
           } catch (e) {
             console.log('Error ', e);
           }
-
+        
+        navigate('/repostitories')
     }
 
     return (

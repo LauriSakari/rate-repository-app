@@ -1,4 +1,4 @@
-import { FlatList, Pressable } from 'react-native';
+import { FlatList, Pressable, View } from 'react-native';
 import RepositoryItem from './RepositoryItem';
 import ItemSeparator from './ItemSeparator';
 import useRepositories from '../hooks/useRepositories';
@@ -9,8 +9,9 @@ import { useState } from 'react';
 import { useDebounce } from 'use-debounce';
 
 
-
-export const RepositoryListContainer = ({ repositories, handlePress }) => {
+export const RepositoryListContainer = ({ 
+  repositories, handlePress, onChangeSearch, searchQuery, 
+  setSelectedSorting, selectedValue, handleEndReached }) => {
 
   const repositoryNodes = repositories
     ? repositories.edges.map((edge) => edge.node)
@@ -20,11 +21,32 @@ export const RepositoryListContainer = ({ repositories, handlePress }) => {
     <FlatList
       data={repositoryNodes}
       ItemSeparatorComponent={ItemSeparator}
+      ListHeaderComponent={
+      <View >
+        <Searchbar
+          placeholder="Search"
+          backgroundColor="white"
+          style={{backgroundColor: 'white', marginTop: 20, marginLeft: 20, marginRight: 20}}
+          onChangeText={onChangeSearch}
+          value={searchQuery}
+      />
+        <Picker
+          selectedValue={selectedValue}
+          style={{margin:10, marginLeft: 10}}
+          onValueChange={(itemValue) => setSelectedSorting(itemValue)
+          }>
+          <Picker.Item label="Latest repositories" value="CREATED_AT"/>
+          <Picker.Item label="Highest rated repositories" value="RATING_AVERAGE" />
+          <Picker.Item label="Lowest rated repositories" value="RATING_AVERAGE_ASC" />
+        </Picker>
+    </View>
+    }
       renderItem={({item}) => (
         <Pressable onPress={() => handlePress(item)}>
           <RepositoryItem item={item} />
         </Pressable>
       )}
+      onEndReached={handleEndReached}
     />
   );
 };
@@ -33,11 +55,20 @@ const RepositoryList = () => {
   const [selectedSorting, setSelectedSorting] = useState("CREATED_AT");
   const [searchQuery, setSearchQuery] = useState('');
   const [value] = useDebounce(searchQuery, 500);
-  const { repositories } = useRepositories(selectedSorting, value);
-  
+  const { repositories, fetchMore } = useRepositories(selectedSorting, value);
+
   const onChangeSearch = query => setSearchQuery(query);
 
-  console.log(searchQuery)
+  const handleEndReached = () => {
+    if (repositories.pageInfo.hasNextPage) {
+      fetchMore({
+        variables: {
+          after: repositories.pageInfo.endCursor
+        }
+      })
+    }
+  }
+  
   const navigate = useNavigate()
 
   const handlePress = (item) => {
@@ -46,20 +77,10 @@ const RepositoryList = () => {
   
   return (
   <>
-    <Searchbar
-      placeholder="Search"
-      onChangeText={onChangeSearch}
-      value={searchQuery}
-    />
-    <Picker
-      selectedValue={selectedSorting}
-      onValueChange={(itemValue) => setSelectedSorting(itemValue)
-    }>
-      <Picker.Item label="Latest repositories" value="CREATED_AT"/>
-      <Picker.Item label="Highest rated repositories" value="RATING_AVERAGE" />
-      <Picker.Item label="Lowest rated repositories" value="RATING_AVERAGE_ASC" />
-    </Picker>
-    <RepositoryListContainer repositories={repositories} handlePress={handlePress}/>
+    <RepositoryListContainer repositories={repositories} handlePress={handlePress}
+      onChangeSearch={onChangeSearch} searchQuery={searchQuery}
+      setSelectedSorting={setSelectedSorting} selectedValue={selectedSorting}
+      handleEndReached={handleEndReached}/>
   </>
   );
 };

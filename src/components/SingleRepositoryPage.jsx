@@ -8,11 +8,13 @@ import useRepositoryReviews from "../hooks/useRepositoryReviews"
 import Text from "./Text"
 import { FlatList } from "react-native"
 
+
+
 const SingleRepositoryPage = () => {
     const { id } = useParams()
     
     const { loading, error, data } = useSingleRepository(id)
-    const { reviews } = useRepositoryReviews(id)
+    const { reviews, fetchMore } = useRepositoryReviews(id)
 
     if (loading) {
       return <Text>Loading...</Text>
@@ -20,6 +22,16 @@ const SingleRepositoryPage = () => {
     if (error) {
         console.log('Something went wrong', error)
     }
+
+    const handleEndReached = () => {
+      if (reviews.pageInfo.hasNextPage) {
+      fetchMore({
+        variables: {
+          after: reviews.pageInfo.endCursor
+        }
+      })
+    }
+}
 
     const repository = data.repository
 
@@ -34,6 +46,7 @@ const SingleRepositoryPage = () => {
     data={reviewsList}
     renderItem={({ item }) => <ReviewItem item={item}/>}
     ItemSeparatorComponent={ItemSeparator}
+    onEndReached={handleEndReached}
     ListHeaderComponent={() => 
       <>
         <RepositoryItem item={repository} showGitHubButton={true}/>

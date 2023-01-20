@@ -4,43 +4,40 @@ import { GET_REPOSITORIES } from '../graphql/queries';
 
 const useRepositories = (selectedSorting, searchQuery) => {
 
-  console.log(searchQuery)
-
-  let variables = {"orderBy": "CREATED_AT", "searchKeyword": searchQuery }
+  let variables = {
+    orderBy: "CREATED_AT", searchKeyword: searchQuery,
+    first: 6,
+  }
 
     switch (selectedSorting) {
       case "RATING_AVERAGE":
         variables= {
-          "orderBy": "RATING_AVERAGE",
-          "searchKeyword": searchQuery
+          orderBy: "RATING_AVERAGE",
+          searchKeyword: searchQuery,
+          first: 6, 
         }
         break
       case "RATING_AVERAGE_ASC":
         variables= {
-          "orderBy": "RATING_AVERAGE",
-          "orderDirection": "ASC",
-          "searchKeyword": searchQuery
+          orderBy: "RATING_AVERAGE",
+          orderDirection: "ASC",
+          searchKeyword: searchQuery,
+          first: 6,
         }
         break
       default:
-        variables = {"orderBy": "CREATED_AT", "searchKeyword": searchQuery}
+        variables
     }
 
     
-const { data, error, loading} = useQuery(GET_REPOSITORIES, {
+const { data, error, loading, fetchMore} = useQuery(GET_REPOSITORIES, {
   fetchPolicy: 'cache-and-network',
   variables
 });
 
-const retunrWhileLoading = []
+const repositories = data ? data.repositories : undefined
 
-if (loading) {
-  return { retunrWhileLoading, loading, error }
-}
-
-const repositories = data.repositories
-
-return { repositories, loading, error };
+return { repositories, error, loading, fetchMore };
 
 };
 

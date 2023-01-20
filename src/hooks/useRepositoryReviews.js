@@ -2,8 +2,8 @@ import { useQuery } from "@apollo/client"
 import { GET_REPOSITORY_REVIEWS } from "../graphql/queries"
 
 const useRepositoryReviews = (id) => {
-  const { loading, error, data } = useQuery(GET_REPOSITORY_REVIEWS, {
-    variables: { idToSearch: id },
+  const { loading, error, data, fetchMore } = useQuery(GET_REPOSITORY_REVIEWS, {
+    variables: { idToSearch: id, reviewsFirst2: 6 },
     fetchPolicy: 'cache-and-network',
 
   })
@@ -14,13 +14,11 @@ const useRepositoryReviews = (id) => {
   if (error) {
     console.log('Something went wrong ', error)
   }
-  if (!data) {
-    return []
-  }
+  
 
-  const reviews = data.repository.reviews
+  const reviews = data ? data.repository.reviews : undefined
 
-  return { reviews }
+  return { reviews , fetchMore}
   
 }
 
