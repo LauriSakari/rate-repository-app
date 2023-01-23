@@ -35,10 +35,26 @@ mutation signIn($username: String!, $password: String!) {
 `;
 
 export const GET_USERINFO = gql`
-query {
+query getCurrentUser($includeReviews: Boolean = false){
   me {
     id
     username
+    reviews @include(if: $includeReviews) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      edges {
+        node {
+          rating
+          createdAt
+          text
+          repository {
+            fullName
+          }
+        }
+      }
+    }
   }
 }
 `;
@@ -74,7 +90,6 @@ query getRepositoryReviewsById ($idToSearch: ID!, $reviewsFirst2: Int, $after: S
           rating
           createdAt
           user {
-            id
             username
           }
         }

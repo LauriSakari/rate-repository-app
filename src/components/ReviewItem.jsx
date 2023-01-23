@@ -42,6 +42,8 @@ const styles = StyleSheet.create({
 
 const ReviewItem = ({ item }) => {
 
+  console.log('item ', item)
+
     const date = format(new Date(item.node.createdAt), 'dd.MM.yyyy')
 
    return (

@@ -2,7 +2,6 @@ import { View, StyleSheet, Linking} from 'react-native';
 import Numbers from './Numbers';
 import Language from './Language'
 import RepositoryHeader from './RepositoryHeader';
-//import GitHubButton from './GitHubButton';
 import AddReviewButton from './LargeButton';
 
 
