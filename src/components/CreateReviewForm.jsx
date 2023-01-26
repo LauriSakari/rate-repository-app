@@ -1,11 +1,12 @@
-import { View, StyleSheet } from "react-native"
-import { Formik, } from 'formik';
-import FormikTextInput from "./FormikTextInput";
-import LargeButton from "./LargeButton";
-import * as yup from 'yup';
-import { useMutation } from "@apollo/client";
-import { CREATE_REVIEW } from "../graphql/queries";
-import { useNavigate } from "react-router-native";
+import { View, StyleSheet } from 'react-native'
+import { Formik, } from 'formik'
+import FormikTextInput from './FormikTextInput'
+import LargeButton from './LargeButton'
+import * as yup from 'yup'
+import { useMutation } from '@apollo/client'
+import { CREATE_REVIEW, GET_USERINFO } from '../graphql/queries'
+import { useNavigate } from 'react-router-native'
+import theme from '../theme'
 
 const initialValues = {
   ownerName: '',
@@ -16,7 +17,7 @@ const initialValues = {
 
 const styles = StyleSheet.create({
   inputFieldsContainer: {
-    backgroundColor: 'white',
+    backgroundColor: theme.colors.white,
     paddingBottom: 15
   }
 })
@@ -32,25 +33,27 @@ const validationSchema = yup.object().shape({
 
 const CreateReviewForm = () => {
 
-    const [createReview] = useMutation(CREATE_REVIEW)
-    
-    const navigate = useNavigate()
-    
-    const onSubmit = async ({ ownerName, repositoryName, ratingField, text }) => {
+  const [createReview] = useMutation(CREATE_REVIEW, {
+    refetchQueries: [ { query: GET_USERINFO, variables:{ includeReviews: true } } ]
+  })
 
-        const rating = Number(ratingField)
+  const navigate = useNavigate()
 
-        try {
-            const { data } = await createReview({variables: {review: {ownerName, repositoryName, rating, text}}});
-            console.log(data);
-          } catch (e) {
-            console.log('Error ', e);
-          }
-        
-        navigate('/repostitories')
+  const onSubmit = async ({ ownerName, repositoryName, ratingField, text }) => {
+
+    const rating = Number(ratingField)
+
+    try {
+      const { data } = await createReview({ variables: { review: { ownerName, repositoryName, rating, text } } })
+      console.log(data)
+    } catch (e) {
+      console.log('Error ', e)
     }
 
-    return (
+    navigate('/repostitories')
+  }
+
+  return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
       {({ handleSubmit }) => <View style={styles.inputFieldsContainer}>
         <FormikTextInput name="ownerName" placeholder="Repostiy owner name"/>
@@ -59,9 +62,9 @@ const CreateReviewForm = () => {
         <FormikTextInput name="text" placeholder="Review" height={'auto'} multiline={true}/>
         <LargeButton handleButton={handleSubmit} text='Create a review'/>
       </View>
-    }
+      }
     </Formik>
-    )
-  
+  )
+
 }
 export default CreateReviewForm

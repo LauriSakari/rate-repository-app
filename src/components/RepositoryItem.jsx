@@ -1,14 +1,15 @@
-import { View, StyleSheet, Linking} from 'react-native';
-import Numbers from './Numbers';
+import { View, StyleSheet, Linking } from 'react-native'
+import Numbers from './Numbers'
 import Language from './Language'
-import RepositoryHeader from './RepositoryHeader';
-import AddReviewButton from './LargeButton';
+import RepositoryHeader from './RepositoryHeader'
+import AddReviewButton from './LargeButton'
+import theme from '../theme'
 
 
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    backgroundColor: 'white'
+    backgroundColor: theme.colors.white
   }
 })
 
@@ -28,16 +29,16 @@ const RepositoryItem = ({ item, showGitHubButton }) => {
         name={item.fullName}
         description={item.description}
         avatar={item.ownerAvatarUrl}
-      />    
+      />
       <Language language={item.language} />
-      <Numbers stars={item.stargazersCount} 
+      <Numbers stars={item.stargazersCount}
         forks={item.forksCount}
         reviews={item.reviewCount}
         rating={item.ratingAverage}/>
-        
-        {showGitHubButton ? <AddReviewButton handleButton={handleGitHubButton} text='Open in GitHub'/> : null}
+
+      {showGitHubButton ? <AddReviewButton handleButton={handleGitHubButton} text='Open in GitHub'/> : null}
     </View>
-    
+
   )
 }
 

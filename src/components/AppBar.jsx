@@ -1,11 +1,11 @@
-import { View, StyleSheet, ScrollView, } from 'react-native';
-import AppBarTab from './AppBarTab';
-import theme from '../theme';
-import { useNavigate } from 'react-router-native';
-import { useApolloClient } from '@apollo/client';
-import useAuthStorage from '../hooks/useAuthStorage';
-import useUser from '../hooks/useUser';
-import Text from './Text';
+import { View, StyleSheet, ScrollView, } from 'react-native'
+import AppBarTab from './AppBarTab'
+import theme from '../theme'
+import { useNavigate } from 'react-router-native'
+import { useApolloClient } from '@apollo/client'
+import useAuthStorage from '../hooks/useAuthStorage'
+import useUser from '../hooks/useUser'
+import Text from './Text'
 
 const styles = StyleSheet.create({
   flexContainer: {
@@ -14,24 +14,24 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.appBarBackground,
     paddingBottom: 15
   }
-});
+})
 
 
 
 const AppBar = () => {
 
-  const apolloClient = useApolloClient();
+  const apolloClient = useApolloClient()
   const navigate = useNavigate()
-  const authStorage = useAuthStorage();
-  const { data, loading } = useUser();
+  const authStorage = useAuthStorage()
+  const { data, loading } = useUser()
 
   const logOut = async () => {
     try {
-    await authStorage.removeAccessToken()
-  } catch (e) {
-    console.log(e)
-  }
-    apolloClient.resetStore();
+      await authStorage.removeAccessToken()
+    } catch (e) {
+      console.log(e)
+    }
+    apolloClient.resetStore()
     navigate('/')
   }
 
@@ -39,25 +39,25 @@ const AppBar = () => {
     return <Text>Loading...</Text>
   }
 
-  return( 
+  return(
     <View style={styles.flexContainer}>
       <ScrollView horizontal>
         <AppBarTab text={'Repositories'} link='/'/>
         {data.me ? (
-        <>
-        <AppBarTab text={'Create a review'} link='/createreview'/>
-        <AppBarTab text={'My reviews'} link='/myreviews'/>
-        <AppBarTab text={'Sign out'} link='/' onPress={logOut}/>
-        </>) : 
-        (
-        <>
-          <AppBarTab text={'Sign in'} link='/signin'/>
-          <AppBarTab text={'Sign up'} link='/signup'/>
-        </>
-        )}
+          <>
+            <AppBarTab text={'Create a review'} link='/createreview'/>
+            <AppBarTab text={'My reviews'} link='/myreviews'/>
+            <AppBarTab text={'Sign out'} link='/' onPress={logOut}/>
+          </>) :
+          (
+            <>
+              <AppBarTab text={'Sign in'} link='/signin'/>
+              <AppBarTab text={'Sign up'} link='/signup'/>
+            </>
+          )}
       </ScrollView>
     </View>
   )
-};
+}
 
-export default AppBar;
+export default AppBar

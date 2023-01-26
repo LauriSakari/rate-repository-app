@@ -1,5 +1,5 @@
-import { useQuery } from "@apollo/client"
-import { GET_REPOSITORY_REVIEWS } from "../graphql/queries"
+import { useQuery } from '@apollo/client'
+import { GET_REPOSITORY_REVIEWS } from '../graphql/queries'
 
 const useRepositoryReviews = (id) => {
   const { loading, error, data, fetchMore } = useQuery(GET_REPOSITORY_REVIEWS, {
@@ -14,12 +14,12 @@ const useRepositoryReviews = (id) => {
   if (error) {
     console.log('Something went wrong ', error)
   }
-  
+
 
   const reviews = data ? data.repository.reviews : undefined
 
-  return { reviews , fetchMore}
-  
+  return { reviews , fetchMore }
+
 }
 
 export default useRepositoryReviews

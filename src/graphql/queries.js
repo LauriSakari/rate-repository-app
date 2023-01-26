@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from '@apollo/client'
 
 
 export const GET_REPOSITORIES = gql`
@@ -24,7 +24,7 @@ query ($orderBy: AllRepositoriesOrderBy, $orderDirection: OrderDirection, $searc
       }
   }
 }
-`;
+`
 
 export const GET_CREDENTIALS = gql`
 mutation signIn($username: String!, $password: String!) {
@@ -32,7 +32,7 @@ mutation signIn($username: String!, $password: String!) {
     accessToken
   }
 }
-`;
+`
 
 export const GET_USERINFO = gql`
 query getCurrentUser($includeReviews: Boolean = false){
@@ -46,10 +46,12 @@ query getCurrentUser($includeReviews: Boolean = false){
       }
       edges {
         node {
+          id
           rating
           createdAt
           text
           repository {
+            id
             fullName
           }
         }
@@ -57,7 +59,7 @@ query getCurrentUser($includeReviews: Boolean = false){
     }
   }
 }
-`;
+`
 
 export const GET_SINGLE_REPOSITORY = gql`
 query getRepositoryById ($idToSearch: ID!){
@@ -75,7 +77,7 @@ query getRepositoryById ($idToSearch: ID!){
     url
   }
   }
-`;
+`
 
 export const GET_REPOSITORY_REVIEWS = gql`
 query getRepositoryReviewsById ($idToSearch: ID!, $reviewsFirst2: Int, $after: String){
@@ -102,7 +104,7 @@ query getRepositoryReviewsById ($idToSearch: ID!, $reviewsFirst2: Int, $after: S
     }
   }
 }
-`;
+`
 
 export const CREATE_REVIEW = gql`
 mutation Mutation($review: CreateReviewInput) {
@@ -124,5 +126,11 @@ mutation Mutation($user: CreateUserInput) {
     username
     reviewCount
   }
+}
+`
+
+export const DELETE_REVIEW = gql`
+mutation deleteReview($deleteReviewId: ID!) {
+  deleteReview(id: $deleteReviewId)
 }
 `

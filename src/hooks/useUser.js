@@ -1,5 +1,5 @@
-import { useQuery } from "@apollo/client";
-import { GET_USERINFO } from "../graphql/queries";
+import { useQuery } from '@apollo/client'
+import { GET_USERINFO } from '../graphql/queries'
 
 const useUser = ( variables ) => {
 
@@ -8,10 +8,7 @@ const useUser = ( variables ) => {
     fetchPolicy: 'cache-and-network'
   })
 
-  console.log('loading', loading)
-  console.log('data ', data)
-   
   return { data, loading, error }
-};
+}
 
-export default useUser;
+export default useUser

@@ -12,6 +12,36 @@
   },
   "rules": {
     "react/prop-types": "off",
-    "react/react-in-jsx-scope": "off"
-  }
+    "react/react-in-jsx-scope": "off",
+    "react-native/no-unused-styles": 2,
+    "react-native/split-platform-components": 2,
+    "react-native/no-inline-styles": 2,
+    "react-native/no-color-literals": 2,
+    "react-native/no-raw-text": 2,
+    "indent": [
+      "error",
+      2
+  ],
+  "linebreak-style": [
+      "error",
+      "unix"
+  ],
+  "quotes": [
+      "error",
+      "single"
+  ],
+  "semi": [
+      "error",
+      "never"
+  ],
+  "eqeqeq": "error",
+  "no-trailing-spaces": "error",
+  "object-curly-spacing": [
+      "error", "always"
+  ],
+  "arrow-spacing": [
+      "error", { "before": true, "after": true }
+  ],
+  "no-console": 1
+}
 }
